@@ -52,3 +52,5 @@ systemctl enable check_xray
 
 # Tambahkan script ke crontab agar berjalan saat VPS reboot
 (crontab -l 2>/dev/null; echo "@reboot /root/san/xray/check_xray.sh") | crontab -
+
+rm restart_xray.sh
