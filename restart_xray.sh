@@ -48,5 +48,5 @@ systemctl enable auto_restart_xray.service
 systemctl start auto_restart_xray.service
 
 echo "Setup auto restart Xray selesai."
-
+cd
 rm restart_xray.sh
