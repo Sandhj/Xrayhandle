@@ -1,37 +1,54 @@
 #!/bin/bash
 
-# Buat direktori untuk menyimpan script dan service
+# Buat direktori untuk menyimpan file setup
 mkdir -p /root/san/xray
 
-# Buat script untuk restart xray
-cat <<EOT >> /root/san/xray/restart_xray.sh
+# Buat file script untuk memeriksa dan mengelola layanan XRAY
+cat <<EOF > /root/san/xray/check_xray.sh
 #!/bin/bash
 
-# Restart xray
-systemctl restart xray
-EOT
+# Variabel warna
+green='\033[0;32m'
+red='\033[0;31m'
+NC='\033[0m'
 
-# Berikan izin eksekusi pada script restart_xray.sh
-chmod +x /root/san/xray/restart_xray.sh
+# Mendapatkan status layanan XRAY
+xray_service=\$(systemctl is-active xray)
 
-# Buat systemd service untuk restart xray
-cat <<EOT >> /etc/systemd/system/restart_xray.service
+# Memeriksa jika layanan XRAY sedang berjalan
+if [[ \$xray_service == "active" ]]; then 
+   status_xray="\${green}ON\${NC}"
+else
+   status_xray="\${red}OFF\${NC}"
+   # Restart layanan jika tidak berjalan
+   systemctl restart xray
+fi
+
+echo "Status XRAY: \$status_xray"
+EOF
+
+# Beri izin eksekusi pada file script
+chmod +x /root/san/xray/check_xray.sh
+
+# Buat file unit systemd untuk menjalankan script secara otomatis
+cat <<EOF > /etc/systemd/system/check_xray.service
 [Unit]
-Description=Restart xray Service Every Hour
+Description=Check XRAY service status and restart if necessary
+After=network.target
 
 [Service]
 Type=simple
-ExecStart=/root/san/xray/restart_xray.sh
+ExecStart=/root/san/xray/check_xray.sh
+Restart=always
 
 [Install]
 WantedBy=multi-user.target
-EOT
+EOF
 
-# Reload systemd agar mengenali service baru yang telah dibuat
+# Reload daemon systemd dan mulai serta aktifkan layanan
 systemctl daemon-reload
+systemctl start check_xray
+systemctl enable check_xray
 
-# Aktifkan service agar berjalan otomatis setiap kali VPS booting
-systemctl enable restart_xray.service
-
-# Tambahkan cron job untuk menjalankan script setiap satu jam
-(crontab -l ; echo "0 * * * * /root/san/xray/restart_xray.sh") | crontab -
+# Tambahkan script ke crontab agar berjalan saat VPS reboot
+(crontab -l 2>/dev/null; echo "@reboot /root/san/xray/check_xray.sh") | crontab -
