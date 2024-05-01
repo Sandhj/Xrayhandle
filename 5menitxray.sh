@@ -20,7 +20,7 @@ while True:
 EOF
 
 # Berikan izin eksekusi pada script
-chmod +x x.sh
+chmod +x x.py
 
 # Buat file unit systemd untuk menjalankan script
 cat << 'EOF' > /etc/systemd/system/x.service
