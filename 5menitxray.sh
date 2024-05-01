@@ -48,4 +48,4 @@ systemctl start x.service
 echo "Restart X-ray tiap 5 Menit Dimulai"
 
 cd
-rm autorestartxray.sh
+rm 5menitxray.sh
