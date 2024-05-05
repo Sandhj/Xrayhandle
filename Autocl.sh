@@ -2,7 +2,7 @@
 
 # Buat direktori jika belum ada
 mkdir -p /root/bot
-cd /root/botp
+cd /root/bot
 
 # Buat script untuk restart otomatis Xray
 cat << 'EOF' > clearlog.py
