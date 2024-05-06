@@ -21,9 +21,9 @@ import telebot
 from telebot import types
 
 # Ganti TOKEN_BOT dengan token bot Anda
-TOKEN_BOT = '6601297331:AAGQTqFWWtu0VKLWrDqTxnzaK75bODPhMd4'
+TOKEN_BOT = '6989875475:AAEaBvBbnRf3z300Kpe2V5Ci365h5OXI5Nk'
 # Ganti ADMIN_ID dengan id admin yang akan menerima foto
-ADMIN_ID = '6901945198'
+ADMIN_ID = '576495165'
 bot = telebot.TeleBot(TOKEN_BOT)
 
 # Path ke folder penyimpanan foto
@@ -183,7 +183,7 @@ EOF
 chmod +x botbuyvpn.py
 
 # Buat file unit systemd untuk menjalankan script
-cat << 'EOF' > /etc/systemd/system/buy.service
+cat << 'EOF' > /etc/systemd/system/botbuyvpn.service
 [Unit]
 Description=San Store
 After=network.target
