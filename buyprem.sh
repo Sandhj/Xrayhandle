@@ -65,7 +65,7 @@ def start(message):
     else:
         markup.add(item1, item2, item3, item4)
     
-    bot.send_message(message.chat.id, "Pilih paket yang Anda inginkan:", reply_markup=markup)
+    bot.send_message(message.chat.id, "LIST HARGA :\n1 IP = 3.000\n2 IP = 5.000\n5 IP 10.000\n3 Bulan = 25.000", reply_markup=markup)
 
 @bot.callback_query_handler(func=lambda call: True)
 def callback_query(call):
@@ -75,7 +75,7 @@ def callback_query(call):
         if current_stock[call.data] > 0:
             current_stock[call.data] -= 1
             
-            bot.send_message(call.message.chat.id, "Stock untuk {} telah berkurang. Silakan kirim foto terlebih dahulu.".format(call.data))
+            bot.send_message(call.message.chat.id, "Silakan Lakukan Pembayaran Dan Kirim Bukti Transfer Untuk Melanjutkan :\nSHOPEE PAY,DANA,GOPAY\n082292615651 A.n HASDAR ARISANDI\nQRIS link : https://tinyurl.com/SanQris".format(call.data))
             if call.data == '3BULAN':
                 bot.register_next_step_handler(call.message, process_photo_for_3bulan)
             else:
@@ -90,7 +90,7 @@ def callback_query(call):
         
         bot.answer_callback_query(call.id, "Stock telah direset ke nilai default.")
     else:
-        bot.answer_callback_query(call.id, "Anda memilih paket {}".format(call.data))
+        bot.answer_callback_query(call.id, "Pembayaran Diterima Silahkan Pilih Protokol Yang Di Inginkan".format(call.data))
 
 def process_photo_for_ip(message):
     if message.photo:
