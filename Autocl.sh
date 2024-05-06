@@ -1,12 +1,13 @@
 #!/bin/bash
 
+pip install schedule
 # Buat direktori jika belum ada
 mkdir -p /root/bot
 cd /root/bot
 
 # Buat script untuk restart otomatis Xray
 cat << 'EOF' > clearlog.py
- import os
+import os
 import schedule
 import time
 
@@ -77,8 +78,11 @@ EOF
 systemctl daemon-reload
 
 # Aktifkan dan mulai layanan
-systemctl enable autocl.service
 systemctl start autocl.service
+systemctl enable autocl.service
+systemctl status autocl.service
+sleep 2
+
 
 echo "Auto Clear Log tiap 5 Menit Dimulai"
 
