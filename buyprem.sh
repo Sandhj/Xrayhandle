@@ -180,10 +180,10 @@ bot.polling()
 EOF
 
 # Berikan izin eksekusi pada script
-chmod +x botbuyvpn.py
+chmod +x buyvpn.py
 
 # Buat file unit systemd untuk menjalankan script
-cat << 'EOF' > /etc/systemd/system/botbuyvpn.service
+cat << 'EOF' > /etc/systemd/system/buyvpn.service
 [Unit]
 Description=San Store
 After=network.target
@@ -191,7 +191,7 @@ After=network.target
 [Service]
 User=root
 WorkingDirectory=/root/bot/beli
-ExecStart=/usr/bin/python3 botbuyvpn.py
+ExecStart=/usr/bin/python3 buyvpn.py
 Restart=always
 
 [Install]
