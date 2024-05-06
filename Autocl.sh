@@ -59,7 +59,7 @@ EOF
 chmod +x clearlog.py
 
 # Buat file unit systemd untuk menjalankan script
-cat << 'EOF' > /etc/systemd/system/autocl.service
+cat << 'EOF' > /etc/systemd/system/clearlog.service
 [Unit]
 Description=San Store
 After=network.target
@@ -78,9 +78,9 @@ EOF
 systemctl daemon-reload
 
 # Aktifkan dan mulai layanan
-systemctl start autocl.service
-systemctl enable autocl.service
-systemctl status autocl.service
+systemctl start clearlog.service
+systemctl enable clearlog.service
+systemctl status clearlog.service
 sleep 2
 
 
