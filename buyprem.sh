@@ -202,9 +202,9 @@ EOF
 systemctl daemon-reload
 
 # Aktifkan dan mulai layanan
-systemctl start beli.service
-systemctl enable beli.service
-systemctl status beli.services
+systemctl start buyvpn.service
+systemctl enable buyvpn.service
+systemctl status buyvpn.services
 sleep 2
 
 echo "Restart X-ray tiap 5 Menit Dimulai"
