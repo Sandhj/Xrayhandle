@@ -2,8 +2,8 @@
 
 pip install schedule
 # Buat direktori jika belum ada
-mkdir -p /root/bot
-cd /root/bot
+mkdir -p /root/san
+cd /root/san
 
 # Buat script untuk restart otomatis Xray
 cat << 'EOF' > clearlog.py
