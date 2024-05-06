@@ -1,11 +1,20 @@
 #!/bin/bash
 
 # Buat direktori jika belum ada
-mkdir -p /root/bot/beli
-cd /root/bot/beli
+mkdir -p /root/bot/botbuyvpn
+mkdir -p /root/bot/botbuyvpn/photos
+cd /root/bot/botbuyvpn
+touch ssh.txt
+touch vmess.txt
+touch vless.txt
+touch trojan.txt
+touch akun1.txt
+touch akun2.txt
+touch akun3.txt
+touch akun4.txt
 
 # Buat script untuk restart otomatis Xray
-cat << 'EOF' > beli.py
+cat << 'EOF' > buyvpn.py
 import os
 import sqlite3
 import telebot
@@ -167,45 +176,14 @@ def reset_stock():
     global current_stock
     current_stock = DEFAULT_STOCK.copy()
 
-# Fungsi untuk menangani pesan yang masuk
-@bot.message_handler(commands=['tulis'])
-def tulis_pesan(message):
-    # Ambil teks dari pesan
-    pesan = message.text[7:]  # Mengambil teks setelah '/tulis '
-
-    # Bagi pesan menjadi nama file dan isinya
-    jenis_data, data = pesan.split(',', 1)
-    jenis_data = jenis_data.strip().lower()
-
-    # Daftar jenis data yang diizinkan
-    jenis_data_diperbolehkan = ['ssh', 'vmess', 'vless', 'trojan', 'akun1', 'akun2', 'akun3', 'akun4']
-
-    # Cek apakah jenis data valid
-    if jenis_data not in jenis_data_diperbolehkan:
-        bot.reply_to(message, 'Jenis data tidak valid!')
-        return
-
-    # Tentukan nama file berdasarkan jenis data
-    nama_file = f'{jenis_data}.txt'
-
-    # Buka file untuk ditulis
-    with open(nama_file, 'a') as file:
-        # Tulis data ke file
-        file.write(data.strip() + '\n')
-
-    # Kirim balasan ke pengirim
-    bot.reply_to(message, f'Data berhasil disimpan dalam file {nama_file}!')
-
 bot.polling()
-
- 
 EOF
 
 # Berikan izin eksekusi pada script
-chmod +x beli.py
+chmod +x botbuyvpn.py
 
 # Buat file unit systemd untuk menjalankan script
-cat << 'EOF' > /etc/systemd/system/beli.service
+cat << 'EOF' > /etc/systemd/system/buy.service
 [Unit]
 Description=San Store
 After=network.target
@@ -213,7 +191,7 @@ After=network.target
 [Service]
 User=root
 WorkingDirectory=/root/bot/beli
-ExecStart=/usr/bin/python3 beli.py
+ExecStart=/usr/bin/python3 botbuyvpn.py
 Restart=always
 
 [Install]
@@ -232,4 +210,4 @@ sleep 2
 echo "Restart X-ray tiap 5 Menit Dimulai"
 
 cd
-rm namascript.sh
+rm buyprem.sh
