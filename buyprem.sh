@@ -65,7 +65,7 @@ def start(message):
     else:
         markup.add(item1, item2, item3, item4)
     
-    bot.send_message(message.chat.id, "LIST HARGA :\n1 IP = 3.000\n2 IP = 5.000\n5 IP 10.000\n3 Bulan = 25.000", reply_markup=markup)
+    bot.send_message(message.chat.id, "LIST HARGA :\n1 IP = 3.000\n2 IP = 5.000\n5 IP = 10.000\n3 Bulan = 25.000", reply_markup=markup)
 
 @bot.callback_query_handler(func=lambda call: True)
 def callback_query(call):
@@ -112,7 +112,7 @@ def process_photo_for_ip(message):
         markup.add(item1, item2, item3, item4)
         bot.send_message(message.chat.id, "Pilih jenis IP yang Anda inginkan:", reply_markup=markup)
     else:
-        bot.send_message(message.chat.id, "Mohon kirim foto.")
+        bot.send_message(message.chat.id, "Kirim Bukti Transfer")
         bot.register_next_step_handler(message, process_photo_for_ip) 
 
 def process_photo_for_3bulan(message):
@@ -135,14 +135,14 @@ def process_photo_for_3bulan(message):
         markup.add(item1, item2, item3, item4)
         bot.send_message(message.chat.id, "Pilih jenis AKUN 3 BULAN yang Anda inginkan:", reply_markup=markup)
     else:
-        bot.send_message(message.chat.id, "Mohon kirim foto.")
+        bot.send_message(message.chat.id, "Kirim Bukti Transfer")
         bot.register_next_step_handler(message, process_photo_for_ip) 
 
 def forward_photo_to_admin(photo_path, username):
     if username:
-        caption = "Ini adalah foto dari @" + username
+        caption = "Bukti Transfer dari @" + username
     else:
-        caption = "Ini adalah foto dari pengguna dengan nomor Telegram: " + str(message.chat.id)
+        caption = "Bukti Transfer Dari No.Telegram " + str(message.chat.id)
     bot.send_photo(ADMIN_ID, open(photo_path, 'rb'), caption=caption)
 
 def send_content_from_file(file_type, chat_id):
