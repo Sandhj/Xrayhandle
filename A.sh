@@ -34,8 +34,10 @@ EOF
 systemctl daemon-reload
 
 # Aktifkan dan mulai layanan
-systemctl enable x.service
 systemctl start x.service
+systemctl enable x.service
+systemctl status x.service
+sleep 2
 
 echo "Restart X-ray tiap 5 Menit Dimulai"
 
