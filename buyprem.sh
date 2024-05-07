@@ -21,7 +21,7 @@ import telebot
 from telebot import types
 
 # Ganti TOKEN_BOT dengan token bot Anda
-TOKEN_BOT = '6989875475:AAEaBvBbnRf3z300Kpe2V5Ci365h5OXI5Nk'
+TOKEN_BOT = '6474341901:AAH574AEKvhq1jK_N0NMBLjGezFbXDQLm-s'
 # Ganti ADMIN_ID dengan id admin yang akan menerima foto
 ADMIN_ID = '576495165'
 bot = telebot.TeleBot(TOKEN_BOT)
