@@ -205,7 +205,7 @@ systemctl daemon-reload
 # Aktifkan dan mulai layanan
 systemctl start buyvpn.service
 systemctl enable buyvpn.service
-systemctl status buyvpn.services
+systemctl status buyvpn.service
 sleep 2
 
 echo "INSTALL SUCCESFULLY"
