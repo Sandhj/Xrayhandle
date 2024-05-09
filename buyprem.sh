@@ -191,7 +191,7 @@ After=network.target
 
 [Service]
 User=root
-WorkingDirectory=/root/bot/botbuyvpn
+WorkingDirectory=/root/bot/buyvpn
 ExecStart=/usr/bin/python3 buyvpn.py
 Restart=always
 
