@@ -42,10 +42,10 @@ AKUN4_FILE = 'akun4.txt'
 
 # Default stock for each option
 DEFAULT_STOCK = {
-    '1IP': 10,
-    '2IP': 10,
-    '5IP': 10,
-    '3BULAN': 10
+    '1IP': 1,
+    '2IP': 1,
+    '5IP': 1,
+    '3BULAN': 1
 }
 
 # Current stock for each option
@@ -56,7 +56,7 @@ def start(message):
     markup = types.InlineKeyboardMarkup(row_width=2)
     item1 = types.InlineKeyboardButton("1 IP ({})".format(current_stock['1IP']), callback_data='1IP')
     item2 = types.InlineKeyboardButton("2 IP ({})".format(current_stock['2IP']), callback_data='2IP')
-    item3 = types.InlineKeyboardButton("5 IP ({})".format(current_stock['5IP']), callback_data='3IP')
+    item3 = types.InlineKeyboardButton("5 IP ({})".format(current_stock['5IP']), callback_data='5IP')
     item4 = types.InlineKeyboardButton("3 BULAN ({})".format(current_stock['3BULAN']), callback_data='3BULAN')
     
     # Cek apakah pengguna adalah admin
