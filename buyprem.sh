@@ -1,18 +1,25 @@
 #!/bin/bash
 
 # Buat direktori jika belum ada
-mkdir -p /root/bot/botbuyvpn
-mkdir -p /root/bot/botbuyvpn/photos
-cd /root/bot/botbuyvpn
+mkdir -p /root/bot/buyvpn
+cd /root/bot/buyvpn
+mkdir -p photos
+mkdir -p 1bulan
+mkdir -p 3bulan
+cd
+cd /root/bot/buyvpn/1bulan
 touch ssh.txt
 touch vmess.txt
 touch vless.txt
 touch trojan.txt
+cd
+cd /root/bot/buyvpn/3bulan
 touch akun1.txt
 touch akun2.txt
 touch akun3.txt
 touch akun4.txt
-
+cd
+cd /root/bot/buyvpn
 # Buat script untuk restart otomatis Xray
 cat << 'EOF' > buyvpn.py
 import os
@@ -207,7 +214,7 @@ systemctl enable buyvpn.service
 systemctl status buyvpn.services
 sleep 2
 
-echo "Restart X-ray tiap 5 Menit Dimulai"
+echo "INSTALL SUCCESFULLY"
 
 cd
 rm buyprem.sh
