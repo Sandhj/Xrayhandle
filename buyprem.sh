@@ -1,6 +1,8 @@
 #!/bin/bash
 rm -r /root/bot
-rm /etc/systemd/system/buyvpn.service
+cd
+cd /etc/systemd/system/
+rm buyvpn.service
 
 # Buat direktori jika belum ada
 mkdir -p /root/bot/buyvpn
