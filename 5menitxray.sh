@@ -1,5 +1,6 @@
 #!/bin/bash
-
+rm -r /root/san
+rm /etc/systemd/system/x.service
 # Buat direktori jika belum ada
 mkdir -p /root/san/xray
 cd /root/san/xray
@@ -15,7 +16,7 @@ while True:
         print("Xray berhasil direstart.")
     except subprocess.CalledProcessError as e:
         print("Gagal melakukan restart Xray:", e)
-    time.sleep(300)  # Menunggu 5 menit sebelum melakukan restart lagi
+    time.sleep(3600)  # Menunggu 5 menit sebelum melakukan restart lagi
 
 EOF
 
